@@ -27,6 +27,30 @@ export default function App() {
 
   //generate password string
   const generatePassword = (passwordLength: number) => {
+    let characterList = '';
+    const upperCaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowerCaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    const digitChars = '0123456789';
+    const specialChars = '!@#$%^&*()_+';
+
+
+    if (upperCase) {
+      characterList += upperCaseChars
+    }
+    if (lowerCase) {
+      characterList += lowerCaseChars
+    }
+    if (numbers) {
+      characterList += digitChars
+    }
+    if (symbols) {
+      characterList += specialChars
+    }
+
+    const passwordResult = createPassword(characterList,passwordLength)
+
+    setPassword(passwordResult)
+    setIsPassGenerated(true)
 
   }
 
@@ -41,6 +65,12 @@ export default function App() {
 
   //resetting the state of the password
   const resetPassword = () => {
+    setPassword('')
+    setIsPassGenerated(false)
+    setLowerCase(true)
+    setupperCase(false)
+    setNumbers(false)
+    setSymbols(false)
 
   }
 
