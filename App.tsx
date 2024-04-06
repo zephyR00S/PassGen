@@ -79,7 +79,9 @@ export default function App() {
   };
 
   return (
-    <ScrollView keyboardShouldPersistTaps="handled">
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      style={styles.appScrollView}>
       <SafeAreaView style={styles.appContainer}>
         <View style={styles.formContainer}>
           <Text style={styles.title}>Password Generator</Text>
@@ -115,7 +117,6 @@ export default function App() {
                     style={styles.inputStyle}
                     value={values.passwordLength}
                     onChangeText={handleChange('passwordLength')}
-                    placeholder="Ex. 6"
                     keyboardType="numeric"
                   />
                 </View>
@@ -125,7 +126,7 @@ export default function App() {
                     disableBuiltInState
                     isChecked={lowerCase}
                     onPress={() => setLowerCase(!lowerCase)}
-                    fillColor="yellow"
+                    fillColor="#ad7505"
                   />
                 </View>
                 <View style={styles.inputWrapper}>
@@ -134,7 +135,7 @@ export default function App() {
                     disableBuiltInState
                     isChecked={upperCase}
                     onPress={() => setupperCase(!upperCase)}
-                    fillColor="red"
+                    fillColor="#03ff81"
                   />
                 </View>
                 <View style={styles.inputWrapper}>
@@ -143,7 +144,7 @@ export default function App() {
                     disableBuiltInState
                     isChecked={numbers}
                     onPress={() => setNumbers(!numbers)}
-                    fillColor="green"
+                    fillColor="#ff03d1"
                   />
                 </View>
                 <View style={styles.inputWrapper}>
@@ -152,7 +153,7 @@ export default function App() {
                     disableBuiltInState
                     isChecked={symbols}
                     onPress={() => setSymbols(!symbols)}
-                    fillColor="blue"
+                    fillColor="#03d9ff"
                   />
                 </View>
 
@@ -160,17 +161,18 @@ export default function App() {
                   <TouchableOpacity
                     disabled={!isValid}
                     style={styles.primaryBtn}
-                    onPress={handleSubmit}
-                    >
+                    onPress={handleSubmit}>
                     <Text style={styles.primaryBtnTxt}>Generate Password</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style = {styles.secondaryBtn}
-                  onPress={() => {
-                    handleReset();
-                    resetPassword();
-                  }}
-                  >
-                    <Text style = {styles.secondaryBtnTxt}>Reset</Text>
+                  <TouchableOpacity
+                    style={styles.secondaryBtn}
+                    onPress={() => {
+                      handleReset();
+                      resetPassword();
+                    }}>
+                    <Text style={styles.secondaryBtnTxt}>
+                      Reset your Password
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </>
@@ -178,10 +180,10 @@ export default function App() {
           </Formik>
         </View>
         {isPassGenerated ? (
-          <View style = {[styles.card, styles.cardElevated]}>
-            <Text style = {styles.subTitle}> Generated Password: </Text>
-            <Text style = {styles.description}> Press to copy </Text>
-            <Text style = {styles.generatedPassword} selectable = {true}>
+          <View style={[styles.card, styles.cardElevated]}>
+            <Text style={styles.subTitle}> Generated Password: </Text>
+            <Text style={styles.description}> Long press to copy </Text>
+            <Text style={styles.generatedPassword} selectable={true}>
               {password}
             </Text>
           </View>
@@ -192,9 +194,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  appScrollView: {
+    backgroundColor: 'black',
+  },
   appContainer: {
     flex: 1,
-
   },
   formContainer: {
     margin: 8,
@@ -204,18 +208,23 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: '600',
     marginBottom: 15,
+    color: 'white',
   },
   subTitle: {
     fontSize: 26,
     fontWeight: '600',
-    marginBottom: 2,
+    marginBottom: 5,
+    marginLeft: 1,
+    color: 'black',
   },
   description: {
-    color: '#758283',
+    color: '#8b8796',
     marginBottom: 8,
+    marginLeft: 6,
   },
   heading: {
     fontSize: 15,
+    color: 'white',
   },
   inputWrapper: {
     marginBottom: 15,
@@ -228,10 +237,12 @@ const styles = StyleSheet.create({
   },
   inputStyle: {
     padding: 8,
-    width: '30%',
-    borderWidth: 1,
-    borderRadius: 4,
-    borderColor: '#16213e',
+    width: '35%',
+    height: '75%',
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: '#b9fae5',
+    color: 'white',
   },
   errorText: {
     fontSize: 12,
@@ -246,7 +257,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     marginHorizontal: 8,
-    backgroundColor: '#5DA3FA',
+    backgroundColor: '#3e1e4a',
+    borderWidth: 2,
+    borderColor: '#523157',
   },
   primaryBtnTxt: {
     color: '#fff',
@@ -258,18 +271,22 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     marginHorizontal: 8,
-    backgroundColor: '#CAD5E2',
+    backgroundColor: '#3e1e4a',
+    borderWidth: 2,
+    borderColor: '#523157',
   },
   secondaryBtnTxt: {
     textAlign: 'center',
+    color: '#fff',
+    fontWeight: '700',
   },
   card: {
-    padding: 12,
-    borderRadius: 6,
-    marginHorizontal: 12,
+    padding: 10,
+    borderRadius: 15,
+    marginHorizontal: 10,
   },
   cardElevated: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fae8ec',
     elevation: 1,
     shadowOffset: {
       width: 1,
@@ -281,9 +298,9 @@ const styles = StyleSheet.create({
   },
   generatedPassword: {
     fontSize: 22,
-    textAlign: 'center',
+    fontWeight: '700',
+    marginLeft: 8,
     marginBottom: 12,
-    color:'#000'
+    color: '#33030d',
   },
-
 });
