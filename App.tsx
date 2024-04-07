@@ -10,6 +10,8 @@ import {
 import React from 'react';
 import {useState} from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 // Form validation
 import * as Yup from 'yup';
@@ -80,11 +82,22 @@ export default function App() {
 
   return (
     <ScrollView
-      keyboardShouldPersistTaps="handled"
-      style={styles.appScrollView}>
-      <SafeAreaView style={styles.appContainer}>
+      keyboardShouldPersistTaps="handled" style = {{
+        backgroundColor: '#700423'
+      }}>
+      <SafeAreaView style={styles.appContainer}> 
+      <LinearGradient
+          colors={['#700423', '#21010a','black']}
+          start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+          style={{
+            flex: 1, 
+            height: 760,
+            
+          }}
+        >
         <View style={styles.formContainer}>
-          <Text style={styles.title}>Password Generator</Text>
+          <Text style={styles.title} >Password Generator</Text>
 
           <Formik
             initialValues={{passwordLength: ''}}
@@ -188,27 +201,30 @@ export default function App() {
             </Text>
           </View>
         ) : null}
+        </LinearGradient>
       </SafeAreaView>
+      
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  appScrollView: {
-    backgroundColor: 'black',
-  },
+  
+
   appContainer: {
     flex: 1,
+   backgroundColor: '#700423'
   },
   formContainer: {
     margin: 8,
     padding: 8,
   },
   title: {
-    fontSize: 32,
-    fontWeight: '600',
+    fontSize: 30,
+    fontWeight: '900',
     marginBottom: 15,
     color: 'white',
+    fontFamily: 'monospace'
   },
   subTitle: {
     fontSize: 26,
@@ -225,6 +241,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 15,
     color: 'white',
+    fontFamily: 'serif'
   },
   inputWrapper: {
     marginBottom: 15,
