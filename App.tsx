@@ -6,11 +6,13 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  StatusBar
 } from 'react-native';
 import React from 'react';
 import {useState} from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import LinearGradient from 'react-native-linear-gradient';
+
 
 
 // Form validation
@@ -86,6 +88,9 @@ export default function App() {
         backgroundColor: '#700423'
       }}>
       <SafeAreaView style={styles.appContainer}> 
+      <StatusBar
+        backgroundColor="#700423"
+      />
       <LinearGradient
           colors={['#700423', '#21010a','black']}
           start={{ x: 0, y: 0 }}
